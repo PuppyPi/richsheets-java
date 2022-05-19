@@ -1,2 +1,2 @@
 # richsheets-java
-API and Data Model for Richsheets in Java :3
+The Richsheets Core Model / API in Java
