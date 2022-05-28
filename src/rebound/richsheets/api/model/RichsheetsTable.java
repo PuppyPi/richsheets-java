@@ -1,9 +1,11 @@
 package rebound.richsheets.api.model;
 
+import static java.util.Collections.*;
 import static java.util.Objects.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import rebound.richshets.model.cell.RichshetCellContents;
 
 /**
@@ -13,6 +15,7 @@ import rebound.richshets.model.cell.RichshetCellContents;
  */
 public class RichsheetsTable
 {
+	protected List<Integer> columnWidths;  //values may be null
 	protected List<RichsheetsRow> rows;
 	protected int frozenRows = 0;
 	protected int frozenColumns = 0;
@@ -30,6 +33,9 @@ public class RichsheetsTable
 	
 	public RichsheetsTable(int numberOfColumns, int numberOfRows, RichshetCellContents newCellValues)
 	{
+		this.columnWidths = new ArrayList<>(nCopies(numberOfColumns, null));
+		
+		
 		this.rows = new ArrayList<>(numberOfRows);
 		
 		for (int i = 0; i < numberOfRows; i++)
@@ -55,7 +61,7 @@ public class RichsheetsTable
 	
 	public int getNumberOfColumns()
 	{
-		return rows.isEmpty() ? 0 : rows.get(0).getCells().size();
+		return columnWidths.size();
 	}
 	
 	public int getNumberOfRows()
@@ -88,6 +94,16 @@ public class RichsheetsTable
 	public void setRows(@Nonnull List<RichsheetsRow> rows)
 	{
 		this.rows = rows;
+	}
+	
+	public List<Integer> getColumnWidths()
+	{
+		return columnWidths;
+	}
+	
+	public void setColumnWidths(List<Integer> columnWidths)
+	{
+		this.columnWidths = columnWidths;
 	}
 	
 	public int getFrozenRows()
@@ -141,6 +157,17 @@ public class RichsheetsTable
 	}
 	
 	
+	
+	
+	public @Nullable Integer getColumnWidth(int columnIndex)
+	{
+		return columnWidths.get(columnIndex);
+	}
+	
+	public void setColumnWidth(int columnIndex, @Nullable Integer columnWidth)
+	{
+		columnWidths.set(columnIndex, columnWidth);
+	}
 	
 	
 	
