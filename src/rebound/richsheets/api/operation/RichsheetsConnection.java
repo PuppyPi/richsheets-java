@@ -3,6 +3,7 @@ package rebound.richsheets.api.operation;
 import static java.util.Collections.*;
 import java.io.IOException;
 import java.util.Date;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import rebound.richsheets.api.model.RichsheetsTable;
 import rebound.richsheets.api.operation.RichsheetsOperation.RichsheetsOperationWithDataTimestamp;
@@ -39,7 +40,7 @@ public interface RichsheetsConnection
 	
 	
 	
-	public void perform(@Nullable Integer maxRowsToRead, @Nullable RichsheetsOperation operation) throws IOException;
+	public void perform(@Nullable Integer maxRowsToRead, @Nonnull RichsheetsOperation operation) throws IOException;
 	
 	
 	
