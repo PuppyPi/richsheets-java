@@ -13,17 +13,17 @@ public interface RichsheetsOperation
 	 * @return null meaning don't write anything, otherwise it may be the same Java Object (referencewise identical) as was given to it or not!  (whatever is return is only used briefly, then forgotten once {@link RichsheetsConnection#perform(RichsheetsOperation)} or similar returns, so feel free to keep hold of it afterward or have brought it in from beforehand!)
 	 * @throws RuntimeException  anything thrown by this will be caught and handled properly (maintenance will write its changes, but no client code changes will be written)
 	 */
-	public @Nullable RichsheetsTable performInMemory(@Nonnull RichsheetsTable data) throws RuntimeException;
+	public @Nullable RichsheetsWriteData performInMemory(@Nonnull RichsheetsTable data) throws RuntimeException;
 	
 	
 	
 	public static interface RichsheetsOperationWithDataTimestamp
 	extends RichsheetsOperation
 	{
-		public @Nullable RichsheetsTable performInMemory(@Nonnull RichsheetsTable data, @Nullable Date lastModifiedTimeOfOriginalData) throws RuntimeException;
+		public @Nullable RichsheetsWriteData performInMemory(@Nonnull RichsheetsTable data, @Nullable Date lastModifiedTimeOfOriginalData) throws RuntimeException;
 		
 		@Override
-		public default RichsheetsTable performInMemory(RichsheetsTable data) throws RuntimeException
+		public default RichsheetsWriteData performInMemory(RichsheetsTable data) throws RuntimeException
 		{
 			return performInMemory(data, null);
 		}
