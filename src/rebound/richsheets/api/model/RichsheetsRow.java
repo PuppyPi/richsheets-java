@@ -3,11 +3,11 @@ package rebound.richsheets.api.model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nullable;
-import rebound.richshets.model.cell.RichshetCellContents;
+import rebound.richshets.model.cell.RichshetsCellContents;
 
 public class RichsheetsRow
 {
-	protected List<RichshetCellContents> cells;
+	protected List<RichshetsCellContents> cells;
 	protected @Nullable Integer height;
 	
 	public RichsheetsRow()
@@ -15,7 +15,7 @@ public class RichsheetsRow
 		this(new ArrayList<>(), null);
 	}
 	
-	public RichsheetsRow(List<RichshetCellContents> cells, Integer height)
+	public RichsheetsRow(List<RichshetsCellContents> cells, Integer height)
 	{
 		this.cells = cells;
 		this.height = height;
@@ -23,9 +23,9 @@ public class RichsheetsRow
 	
 	
 	
-	public static RichsheetsRow newFilled(RichshetCellContents newCellValues, int n, Integer height)
+	public static RichsheetsRow newFilled(RichshetsCellContents newCellValues, int n, Integer height)
 	{
-		List<RichshetCellContents> cells = new ArrayList<>(n);
+		List<RichshetsCellContents> cells = new ArrayList<>(n);
 		
 		for (int i = 0; i < n; i++)
 			cells.add(newCellValues);
@@ -35,12 +35,12 @@ public class RichsheetsRow
 	
 	
 	
-	public List<RichshetCellContents> getCells()
+	public List<RichshetsCellContents> getCells()
 	{
 		return cells;
 	}
 	
-	public void setCells(List<RichshetCellContents> singleValuedColumns)
+	public void setCells(List<RichshetsCellContents> singleValuedColumns)
 	{
 		this.cells = singleValuedColumns;
 	}

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import rebound.richshets.model.cell.RichshetCellContents;
+import rebound.richshets.model.cell.RichshetsCellContents;
 
 /**
  * Note: while row indexes match up perfectly with the Google Sheet (after the frozen header rows), column indexes certainly don't generally!!<br>
@@ -28,10 +28,10 @@ public class RichsheetsTable
 	
 	public RichsheetsTable(int numberOfColumns, int numberOfRows)
 	{
-		this(numberOfColumns, numberOfRows, RichshetCellContents.Blank);
+		this(numberOfColumns, numberOfRows, RichshetsCellContents.Blank);
 	}
 	
-	public RichsheetsTable(int numberOfColumns, int numberOfRows, RichshetCellContents newCellValues)
+	public RichsheetsTable(int numberOfColumns, int numberOfRows, RichshetsCellContents newCellValues)
 	{
 		this.columnWidths = new ArrayList<>(nCopies(numberOfColumns, null));
 		
@@ -140,7 +140,7 @@ public class RichsheetsTable
 	 * @param rowIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or rowIndex is too small or large
 	 */
-	public @Nonnull RichshetCellContents getCell(int columnIndex, int rowIndex) throws IndexOutOfBoundsException
+	public @Nonnull RichshetsCellContents getCell(int columnIndex, int rowIndex) throws IndexOutOfBoundsException
 	{
 		return rows.get(rowIndex).getCells().get(columnIndex);
 	}
@@ -150,7 +150,7 @@ public class RichsheetsTable
 	 * @param rowIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or rowIndex is too small or large
 	 */
-	public void setCell(int columnIndex, int rowIndex, @Nonnull RichshetCellContents value) throws IndexOutOfBoundsException
+	public void setCell(int columnIndex, int rowIndex, @Nonnull RichshetsCellContents value) throws IndexOutOfBoundsException
 	{
 		requireNonNull(value);
 		rows.get(rowIndex).getCells().set(columnIndex, value);
@@ -182,13 +182,13 @@ public class RichsheetsTable
 	 */
 	public RichsheetsRow addRow()
 	{
-		return addRow(RichshetCellContents.Blank);
+		return addRow(RichshetsCellContents.Blank);
 	}
 	
 	/**
 	 * Like {@link #addRow()} but you get to set the value of newly-created cells (single-valued ones; multi-valued ones still start with each their own separate empty mutable list)
 	 */
-	public RichsheetsRow addRow(RichshetCellContents newCellValues)
+	public RichsheetsRow addRow(RichshetsCellContents newCellValues)
 	{
 		RichsheetsRow row = RichsheetsRow.newFilled(newCellValues, getNumberOfColumns(), null);
 		rows.add(row);
